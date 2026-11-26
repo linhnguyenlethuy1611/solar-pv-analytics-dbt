@@ -1,0 +1,52 @@
+
+
+version: 2
+
+models:
+  - name: mart_daily_site_performance
+    description: >
+      Daily solar PV production aggregated by site.
+      Each row represents one site on one production date.
+      The model combines 15-minute inverter measurements
+      with site metadata to calculate daily energy
+      and specific yield.
+
+    data_tests:
+      - unique_site_date_pair
+
+    columns:
+      - name: SiteID
+        description: "Unique identifier of the PV site."
+        data_tests:
+          - not_null
+
+      - name: SiteName
+        description: "Name of the PV site."
+
+      - name: Region
+        description: "Geographical region of the PV site."
+
+      - name: production_date
+        description: "Date of electricity production."
+        data_tests:
+          - not_null
+
+      - name: Installed_kWp
+        description: "Installed PV capacity in kWp."
+        data_tests:
+          - not_null
+
+      - name: daily_energy_kwh
+        description: "Total daily electricity production in kWh."
+        data_tests:
+          - not_null
+
+      - name: daily_specific_yield
+        description: >
+          Daily electricity production divided by installed
+          capacity, expressed in kWh/kWp.
+
+      - name: measurement_count
+        description: >
+          Number of 15-minute inverter-level records
+          included in the daily aggregation.

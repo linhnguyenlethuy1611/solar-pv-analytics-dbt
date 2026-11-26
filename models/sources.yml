@@ -1,0 +1,21 @@
+
+version: 2
+
+sources:
+  - name: solar_raw
+    database: data-analytics-gcp-lab
+    schema: analytics_lab
+
+    tables:
+      - name: dim_sites
+
+      - name: dim_inverters
+
+      - name: fact_pv_15min_raw
+        columns:
+          - name: SiteID
+            data_tests:
+              - relationships:
+                  arguments:
+                    to: source('solar_raw', 'dim_sites')
+                    field: SiteID
