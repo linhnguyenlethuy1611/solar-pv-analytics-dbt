@@ -95,7 +95,9 @@ The daily performance model depends on two BigQuery source tables:
 Both feed the `mart_daily_site_performance` model.
 
 The `dim_inverters` table is declared as a source but is not directly used in this model.
+### Data Lineage
 
+![dbt Data Lineage](assets/lineage.png)
 ## Project Structure
 
 - `models/sources.yml` — BigQuery source definitions and source tests.
